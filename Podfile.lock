@@ -97,32 +97,32 @@ DEPENDENCIES:
   - UMengSocial (= 4.2.3)
 
 SPEC CHECKSUMS:
-  APParallaxHeader: 854bc48a2487ca12c702f8a236fec0d89cdac5c3
-  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
-  evernote-cloud-sdk-ios: 7a6e5402b837ea79ef0179caff5ffe7b4f235615
-  FontAwesome+iOS: 9070b682a9255ca0fdc34bcfb129ad0ba2b73b87
-  hpple: 3b765f96fc2cd56ad1a49aef6f7be5cb2aa64b57
-  iVersion: 2b6ffe708672cb494ba3cab150a94800c2892e81
-  JazzHands: 00002e9b1284e7fc1ac6555012e81b8942477242
-  MarqueeLabel: 65ca60ee9ba554be34f35339004c6c9fe6366a31
-  Masonry: 9f515466afe48632562342a40a1c224071a1a022
-  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
-  MMMarkdown: 13af1af50e5f476f1097797f43ea2bd76c83067a
-  NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
-  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
-  POP+MCAnimate: a99e209148c602512de487f1160a44bf78572024
-  PPiAwesomeButton: 16f7279582fd36f65186b24b83ef876217363eb5
-  RBBAnimation: 4b2d66f6d993febce63cd564da934985313b9c59
-  ReactiveCocoa: 334468a83b2c5f669f7cfb9a084415ee23219b4f
-  RegexKitLite-NoWarning: 365d208f8187997e33d9de8baeddfc00728596d8
-  SDCAlertView: f9706c18f456ea87909f8f199704cd28e582ff27
-  SDCAutoLayout: e6885bb39ab8e2ec2ff84d158f38035f025f7420
-  SSKeychain: 3f42991739c6c60a9cf1bbd4dff6c0d3694bcf3d
-  TMCache: 95ebcc9b3c7e90fb5fd8fc3036cba3aa781c9bed
-  TPKeyboardAvoiding: 0a40dfbb0af7c8bdae1dd457496dccfd217d85f6
-  TTTAttributedLabel: c8f3801a6463b9c9b82b0c84c465fdda9751892a
-  UIImage+BlurredFrame: ad2f7195c6947ea3117c7d202f75a51958d5061a
-  UMengAnalytics: 092c24aef47b6ac3c76ad51543f91156a8d7b645
-  UMengSocial: 85882abe5b20aa38ad558ece71360e16b5d50909
+  APParallaxHeader: f95cf55e4122602e6bd6c477fba3ff400eacadf5
+  BlocksKit: 82161d3dcbc2c1c559a456099c965e9da77291cc
+  evernote-cloud-sdk-ios: f50e1e55258ecb2a7f6d53e9bde9c809691e8c84
+  FontAwesome+iOS: 97536432e89396e5b9ef81d7911ec8a62c194331
+  hpple: 48c3da73519a8ee14d49fda9001fa97a93453cc1
+  iVersion: 6765e067fdda8e05d11f36a1420cb8aa62cc27a4
+  JazzHands: 0ba9993100da7bc7a6ab7b57764ad93d68f41a71
+  MarqueeLabel: 3461e3f9d4aa9a2e6d11dc29639fe2d82c2369fd
+  Masonry: 1e588872db21fee862bd29c89e8584f49390c811
+  MBProgressHUD: ddeaebc6b3270e726c5275a63f848b91e1ac7e8a
+  MMMarkdown: 5aff89f63b53bacbff3e2629c4e478378ff62724
+  NYXImagesKit: a6b83750135422680aa81e62be967cd91130a6de
+  pop: 3775ed4d67a2f0b1f4188932f2d9dacc795220ec
+  POP+MCAnimate: b38a4fc958b46e3380ea79046bb9fa109a1e248b
+  PPiAwesomeButton: 65ee9bf044d8371f6215369723ea51b04328f15f
+  RBBAnimation: b7ce5547b0807955fdff4bc844a829c6762d4861
+  ReactiveCocoa: ed6e3267c2b5fffb27723015ed7138b838cfd56f
+  RegexKitLite-NoWarning: 45dda57c3152fa653ccd861e8e7984d211dd449c
+  SDCAlertView: fd45a867e993449ac5ae26d372423e47ac44415d
+  SDCAutoLayout: 7299138eb2c36fdda59a1afdba64bc4d00a524e0
+  SSKeychain: e139dd28562888fa13b48aef7234c7d9c8c3e82c
+  TMCache: 708d5f5ee09566acaf4de95f418b24bb40febec9
+  TPKeyboardAvoiding: 582059b5c4b8a610fb53d8115da5712ebe35de2f
+  TTTAttributedLabel: ec4f73a0bec465c5a88a9c797a7e4edc756ca9dc
+  UIImage+BlurredFrame: 5a65e211290be58fe4e37db53f0d7892cee1f08e
+  UMengAnalytics: 07a4010a9b58eb8a51695baf9c3346f61d9d5ada
+  UMengSocial: 540f782db4ba5a1a1d048c190b7d6168d9175f5a
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

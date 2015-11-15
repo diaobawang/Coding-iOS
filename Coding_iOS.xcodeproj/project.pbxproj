@@ -3347,7 +3347,6 @@
 			children = (
 				4EB5A9331BF1DB4600C23AC3 /* SinaSSO */,
 			);
-			name = UMSocial_Sdk_4.3.0_Extra;
 			path = UMSocial_Sdk_4.3.0_Extra;
 			sourceTree = "<group>";
 		};
@@ -4723,6 +4722,7 @@
 				8E47700D198770E700997D05 /* Frameworks */,
 				8E47700E198770E700997D05 /* Resources */,
 				96A9263FF11A4AA8B5F6BB6B /* Copy Pods Resources */,
+				A5FAEB431E410BC9CC428565 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -5241,6 +5241,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A5FAEB431E410BC9CC428565 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
