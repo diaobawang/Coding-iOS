@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CodeFile.h"
+//#import "CodeFile.h"
 
 @interface WebContentManager : NSObject
 + (instancetype)sharedManager;
-+ (NSString *)codePatternedWithContent:(CodeFile *)codeFile;
+//+ (NSString *)codePatternedWithContent:(CodeFile *)codeFile;
 + (NSString *)bubblePatternedWithContent:(NSString *)content;
 + (NSString *)topicPatternedWithContent:(NSString *)content;
 + (NSString *)markdownPatternedWithContent:(NSString *)content;

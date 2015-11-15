@@ -69,21 +69,7 @@
     return patternedStr;
 }
 
-- (NSString *)codePatternedWithContent:(CodeFile *)codeFile{
-    if (!codeFile || !codeFile.file || (!codeFile.file.data && !codeFile.file.preview)) {
-        return @"";
-    }
-    NSString *patternedStr;
-    if ([codeFile.file.lang isEqualToString:@"markdown"]) {
-        patternedStr = [self.markdown_pattern_htmlStr stringByReplacingOccurrencesOfString:@"${webview_content}" withString:codeFile.file.preview];
-    }else{
-        patternedStr = [codeFile.file.data stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
-        patternedStr = [patternedStr stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
-        patternedStr = [self.code_pattern_htmlStr stringByReplacingOccurrencesOfString:@"${file_code}" withString:patternedStr];
-        patternedStr = [patternedStr stringByReplacingOccurrencesOfString:@"${file_lang}" withString:codeFile.file.lang];
-    }
-    return patternedStr;
-}
+
 - (NSString *)markdownPatternedWithContent:(NSString *)content{
     if (!content) {
         return @"";
@@ -101,9 +87,7 @@
     return patternedStr;
 }
 
-+ (NSString *)codePatternedWithContent:(CodeFile *)codeFile{
-    return [[self sharedManager] codePatternedWithContent:codeFile];
-}
+
 + (NSString *)bubblePatternedWithContent:(NSString *)content{
     return [[self sharedManager] bubblePatternedWithContent:content];
 }
