@@ -58,15 +58,7 @@
 
 #pragma mark Private_M
 - (void)setupViewControllers {
-    Project_RootViewController *project = [[Project_RootViewController alloc] init];
-    RAC(project, rdv_tabBarItem.badgeValue) = [RACSignal combineLatest:@[RACObserve([UnReadManager shareManager], project_update_count)]
-                                                             reduce:^id(NSNumber *project_update_count){
-                                                                 return project_update_count.integerValue > 0? kBadgeTipStr : @"";
-                                                             }];
-    UINavigationController *nav_project = [[BaseNavigationController alloc] initWithRootViewController:project];
-    
-    MyTask_RootViewController *mytask = [[MyTask_RootViewController alloc] init];
-    UINavigationController *nav_mytask = [[BaseNavigationController alloc] initWithRootViewController:mytask];
+
     
     RKSwipeBetweenViewControllers *nav_tweet = [RKSwipeBetweenViewControllers newSwipeBetweenViewControllers];
     [nav_tweet.viewControllerArray addObjectsFromArray:@[[Tweet_RootViewController newTweetVCWithType:Tweet_RootViewControllerTypeAll],
@@ -95,7 +87,7 @@
     me.isRoot = YES;
     UINavigationController *nav_me = [[BaseNavigationController alloc] initWithRootViewController:me];
     
-    [self setViewControllers:@[nav_project, nav_mytask, nav_tweet, nav_message, nav_me]];
+    [self setViewControllers:@[nav_tweet, nav_message, nav_me]];
     
     [self customizeTabBarForController];
     self.delegate = self;
@@ -103,8 +95,8 @@
 
 - (void)customizeTabBarForController {
     UIImage *backgroundImage = [UIImage imageNamed:@"tabbar_background"];
-    NSArray *tabBarItemImages = @[@"project", @"task", @"tweet", @"privatemessage", @"me"];
-    NSArray *tabBarItemTitles = @[@"我的项目", @"我的任务", @"冒泡", @"消息", @"我"];
+    NSArray *tabBarItemImages = @[ @"tweet", @"privatemessage", @"me"];
+    NSArray *tabBarItemTitles = @[ @"冒泡", @"消息", @"我"];
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[self tabBar] items]) {
