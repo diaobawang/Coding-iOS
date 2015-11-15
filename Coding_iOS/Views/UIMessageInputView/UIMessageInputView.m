@@ -21,7 +21,7 @@
 
 //at某人的功能
 #import "UsersViewController.h"
-#import "ProjectMemberListViewController.h"
+
 #import "Users.h"
 #import "Login.h"
 
@@ -918,9 +918,9 @@ static NSMutableDictionary *_inputStrDict, *_inputMediaDict;
         __weak typeof(self) weakSelf = self;
         if (self.curProject) {
             //@项目成员
-            [ProjectMemberListViewController showATSomeoneWithBlock:^(User *curUser) {
-                [weakSelf atSomeUser:curUser inTextView:textView andRange:range];
-            } withProject:self.curProject];
+//            [ProjectMemberListViewController showATSomeoneWithBlock:^(User *curUser) {
+//                [weakSelf atSomeUser:curUser inTextView:textView andRange:range];
+//            } withProject:self.curProject];
         }else{
             //@好友
             [UsersViewController showATSomeoneWithBlock:^(User *curUser) {

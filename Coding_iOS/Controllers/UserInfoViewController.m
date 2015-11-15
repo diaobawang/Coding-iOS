@@ -18,7 +18,7 @@
 #import "SettingViewController.h"
 #import "SettingMineInfoViewController.h"
 #import "UserInfoDetailViewController.h"
-#import "ProjectListViewController.h"
+
 #import "LocalFoldersViewController.h"
 
 #import "RDVTabBarController.h"
@@ -232,7 +232,8 @@
         [self goToDetailInfo];
     }else if (indexPath.section == 2){
         if (indexPath.row == 0) {
-            [self goToProjects];
+            //[self goToProjects];
+            // do nothing
         }else if(indexPath.row == 1){
             [self goToTweets];
         }else if (indexPath.row == 2){
@@ -332,11 +333,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)goToProjects{
-    ProjectListViewController *vc = [[ProjectListViewController alloc] init];
-    vc.curUser = _curUser;
-    [self.navigationController pushViewController:vc animated:YES];
-}
+
 
 - (void)goToDetailInfo{
     if ([self isMe]) {

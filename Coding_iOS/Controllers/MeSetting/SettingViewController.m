@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 #import "SettingAccountViewController.h"
 #import "AboutViewController.h"
-#import "EditTopicViewController.h"
+
 
 @interface SettingViewController ()
 @property (strong, nonatomic) UITableView *myTableView;
@@ -121,12 +121,8 @@
         case 1:
             switch (indexPath.row) {
                 case 0:{//意见反馈
-                    EditTopicViewController *vc = [[EditTopicViewController alloc] init];
-                    vc.curProTopic = [ProjectTopic feedbackTopic];
-                    vc.type = TopicEditTypeFeedBack;
-                    vc.topicChangedBlock = nil;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
+                    // do nothing
+               }
                     break;
                 case 1:{//评分
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:kAppReviewURL]];

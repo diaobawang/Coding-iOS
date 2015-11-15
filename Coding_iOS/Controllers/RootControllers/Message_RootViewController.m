@@ -13,7 +13,7 @@
 #import "ConversationCell.h"
 #import "ConversationViewController.h"
 #import "ToMessageCell.h"
-#import "TipsViewController.h"
+
 #import "UsersViewController.h"
 #import "UnReadManager.h"
 #import "RDVTabBarController.h"
@@ -204,9 +204,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row < 3) {
-        TipsViewController *vc = [[TipsViewController alloc] init];
-        vc.myCodingTips = [CodingTips codingTipsWithType:indexPath.row];
-        [self.navigationController pushViewController:vc animated:YES];
+//        TipsViewController *vc = [[TipsViewController alloc] init];
+//        vc.myCodingTips = [CodingTips codingTipsWithType:indexPath.row];
+//        [self.navigationController pushViewController:vc animated:YES];
     }else{
         PrivateMessage *curMsg = [_myPriMsgs.list objectAtIndex:indexPath.row-3];
         ConversationViewController *vc = [[ConversationViewController alloc] init];

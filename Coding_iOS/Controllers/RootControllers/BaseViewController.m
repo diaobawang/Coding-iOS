@@ -13,10 +13,7 @@
 #import <RegexKitLite-NoWarning/RegexKitLite.h>
 #import "UserInfoViewController.h"
 #import "TweetDetailViewController.h"
-#import "TopicDetailViewController.h"
-#import "EditTaskViewController.h"
-#import "ProjectViewController.h"
-#import "NProjectViewController.h"
+
 #import "UserTweetsViewController.h"
 #import "Coding_NetAPIManager.h"
 #import "AppDelegate.h"
@@ -24,10 +21,7 @@
 #import "RootTabViewController.h"
 #import "Message_RootViewController.h"
 
-#import "ProjectCommitsViewController.h"
-#import "PRDetailViewController.h"
-#import "CommitFilesViewController.h"
-#import "FileViewController.h"
+
 #import "CSTopicDetailVC.h"
 
 #import "UnReadManager.h"
@@ -187,94 +181,94 @@ typedef NS_ENUM(NSInteger, AnalyseMethodType) {
         vc.curTweet = [Tweet tweetInProject:curPro andPPID:pp_id];
         analyseVC = vc;
     }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:gitMRPRCommitRegexStr]).count > 0){
-        //MR
-        NSString *path = [matchedCaptures[0] stringByReplacingOccurrencesOfString:@"https://coding.net" withString:@""];
-        
-        if ([matchedCaptures[3] isEqualToString:@"commit"]) {
-            if ([presentingVC isKindOfClass:[CommitFilesViewController class]]) {
-                CommitFilesViewController *vc = (CommitFilesViewController *)presentingVC;
-                if ([vc.commitId isEqualToString:matchedCaptures[3]] &&
-                    [vc.projectName isEqualToString:matchedCaptures[2]] &&
-                    [vc.ownerGK isEqualToString:matchedCaptures[1]]) {
-                    [vc refresh];
-                    analyseVCIsNew = NO;
-                    analyseVC = vc;
-                }
-            }
-            if (!analyseVC) {
-                analyseVC = [CommitFilesViewController vcWithPath:path];
-            }
-        }else{
-            if ([presentingVC isKindOfClass:[PRDetailViewController class]]) {
-                PRDetailViewController *vc = (PRDetailViewController *)presentingVC;
-                if ([vc.curMRPR.path isEqualToString:path]) {
-                    [vc refresh];
-                    analyseVCIsNew = NO;
-                    analyseVC = vc;
-                }
-            }
-            if (!analyseVC) {
-                analyseVC = [PRDetailViewController vcWithPath:path];
-            }
-        }
+//        //MR
+//        NSString *path = [matchedCaptures[0] stringByReplacingOccurrencesOfString:@"https://coding.net" withString:@""];
+//        
+//        if ([matchedCaptures[3] isEqualToString:@"commit"]) {
+//            if ([presentingVC isKindOfClass:[CommitFilesViewController class]]) {
+//                CommitFilesViewController *vc = (CommitFilesViewController *)presentingVC;
+//                if ([vc.commitId isEqualToString:matchedCaptures[3]] &&
+//                    [vc.projectName isEqualToString:matchedCaptures[2]] &&
+//                    [vc.ownerGK isEqualToString:matchedCaptures[1]]) {
+//                    [vc refresh];
+//                    analyseVCIsNew = NO;
+//                    analyseVC = vc;
+//                }
+//            }
+//            if (!analyseVC) {
+//                analyseVC = [CommitFilesViewController vcWithPath:path];
+//            }
+//        }else{
+//            if ([presentingVC isKindOfClass:[PRDetailViewController class]]) {
+//                PRDetailViewController *vc = (PRDetailViewController *)presentingVC;
+//                if ([vc.curMRPR.path isEqualToString:path]) {
+//                    [vc refresh];
+//                    analyseVCIsNew = NO;
+//                    analyseVC = vc;
+//                }
+//            }
+//            if (!analyseVC) {
+//                analyseVC = [PRDetailViewController vcWithPath:path];
+//            }
+//        }
     }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:topicRegexStr]).count > 0){
         //讨论
-        NSString *topic_id = matchedCaptures[3];
-        if ([presentingVC isKindOfClass:[TopicDetailViewController class]]) {
-            TopicDetailViewController *vc = (TopicDetailViewController *)presentingVC;
-            if ([vc.curTopic.id.stringValue isEqualToString:topic_id]) {
-                [vc refreshTopic];
-                analyseVCIsNew = NO;
-                analyseVC = vc;
-            }
-        }
-        if (!analyseVC) {
-            TopicDetailViewController *vc = [[TopicDetailViewController alloc] init];
-            vc.curTopic = [ProjectTopic topicWithId:[NSNumber numberWithInteger:topic_id.integerValue]];
-            analyseVC = vc;
-        }
+//        NSString *topic_id = matchedCaptures[3];
+//        if ([presentingVC isKindOfClass:[TopicDetailViewController class]]) {
+//            TopicDetailViewController *vc = (TopicDetailViewController *)presentingVC;
+//            if ([vc.curTopic.id.stringValue isEqualToString:topic_id]) {
+//                [vc refreshTopic];
+//                analyseVCIsNew = NO;
+//                analyseVC = vc;
+//            }
+//        }
+//        if (!analyseVC) {
+//            TopicDetailViewController *vc = [[TopicDetailViewController alloc] init];
+//            vc.curTopic = [ProjectTopic topicWithId:[NSNumber numberWithInteger:topic_id.integerValue]];
+//            analyseVC = vc;
+//        }
     }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:taskRegexStr]).count > 0){
-        //任务
-        NSString *user_global_key = matchedCaptures[1];
-        NSString *project_name = matchedCaptures[2];
-        NSString *taskId = matchedCaptures[3];
-        NSString *backend_project_path = [NSString stringWithFormat:@"/user/%@/project/%@", user_global_key, project_name];
-        if ([presentingVC isKindOfClass:[EditTaskViewController class]]) {
-            EditTaskViewController *vc = (EditTaskViewController *)presentingVC;
-            if ([vc.myTask.backend_project_path isEqualToString:backend_project_path]
-                && [vc.myTask.id.stringValue isEqualToString:taskId]) {
-                [vc queryToRefreshTaskDetail];
-                analyseVCIsNew = NO;
-                analyseVC = vc;
-            }
-        }
-        if (!analyseVC) {
-            EditTaskViewController *vc = [[EditTaskViewController alloc] init];
-            vc.myTask = [Task taskWithBackend_project_path:[NSString stringWithFormat:@"/user/%@/project/%@", user_global_key, project_name] andId:taskId];
-            @weakify(vc);
-            vc.taskChangedBlock = ^(){
-                @strongify(vc);
-                [vc dismissViewControllerAnimated:YES completion:nil];
-            };
-            analyseVC = vc;
-        }
+//        //任务
+//        NSString *user_global_key = matchedCaptures[1];
+//        NSString *project_name = matchedCaptures[2];
+//        NSString *taskId = matchedCaptures[3];
+//        NSString *backend_project_path = [NSString stringWithFormat:@"/user/%@/project/%@", user_global_key, project_name];
+//        if ([presentingVC isKindOfClass:[EditTaskViewController class]]) {
+//            EditTaskViewController *vc = (EditTaskViewController *)presentingVC;
+//            if ([vc.myTask.backend_project_path isEqualToString:backend_project_path]
+//                && [vc.myTask.id.stringValue isEqualToString:taskId]) {
+//                [vc queryToRefreshTaskDetail];
+//                analyseVCIsNew = NO;
+//                analyseVC = vc;
+//            }
+//        }
+//        if (!analyseVC) {
+//            EditTaskViewController *vc = [[EditTaskViewController alloc] init];
+//            vc.myTask = [Task taskWithBackend_project_path:[NSString stringWithFormat:@"/user/%@/project/%@", user_global_key, project_name] andId:taskId];
+//            @weakify(vc);
+//            vc.taskChangedBlock = ^(){
+//                @strongify(vc);
+//                [vc dismissViewControllerAnimated:YES completion:nil];
+//            };
+//            analyseVC = vc;
+//        }
     }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:fileRegexStr]).count > 0){
-        NSString *user_global_key = matchedCaptures[1];
-        NSString *project_name = matchedCaptures[2];
-        NSString *fileId = matchedCaptures[4];
-        if ([presentingVC isKindOfClass:[FileViewController class]]) {
-            FileViewController *vc = (FileViewController *)presentingVC;
-            if (vc.curFile.file_id.integerValue == fileId.integerValue) {
-                [vc requestFileData];
-                analyseVCIsNew = NO;
-                analyseVC = vc;
-            }
-        }
-        if (!analyseVC) {
-            ProjectFile *curFile = [[ProjectFile alloc] initWithFileId:@(fileId.integerValue) inProject:project_name ofUser:user_global_key];
-            FileViewController *vc = [FileViewController vcWithFile:curFile andVersion:nil];
-            analyseVC = vc;
-        }
+//        NSString *user_global_key = matchedCaptures[1];
+//        NSString *project_name = matchedCaptures[2];
+//        NSString *fileId = matchedCaptures[4];
+//        if ([presentingVC isKindOfClass:[FileViewController class]]) {
+//            FileViewController *vc = (FileViewController *)presentingVC;
+//            if (vc.curFile.file_id.integerValue == fileId.integerValue) {
+//                [vc requestFileData];
+//                analyseVCIsNew = NO;
+//                analyseVC = vc;
+//            }
+//        }
+//        if (!analyseVC) {
+//            ProjectFile *curFile = [[ProjectFile alloc] initWithFileId:@(fileId.integerValue) inProject:project_name ofUser:user_global_key];
+//            FileViewController *vc = [FileViewController vcWithFile:curFile andVersion:nil];
+//            analyseVC = vc;
+//        }
     }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:conversionRegexStr]).count > 0) {
         //私信
         NSString *user_global_key = matchedCaptures[1];
@@ -311,15 +305,15 @@ typedef NS_ENUM(NSInteger, AnalyseMethodType) {
             vc.topicID = pp_topic_id.integerValue;
             analyseVC = vc;
         }else if ((matchedCaptures = [linkStr captureComponentsMatchedByRegex:projectRegexStr]).count > 0){
-            //项目
-            NSString *user_global_key = matchedCaptures[1];
-            NSString *project_name = matchedCaptures[2];
-            Project *curPro = [[Project alloc] init];
-            curPro.owner_user_name = user_global_key;
-            curPro.name = project_name;
-            NProjectViewController *vc = [[NProjectViewController alloc] init];
-            vc.myProject = curPro;
-            analyseVC = vc;
+//            //项目
+//            NSString *user_global_key = matchedCaptures[1];
+//            NSString *project_name = matchedCaptures[2];
+//            Project *curPro = [[Project alloc] init];
+//            curPro.owner_user_name = user_global_key;
+//            curPro.name = project_name;
+//            NProjectViewController *vc = [[NProjectViewController alloc] init];
+//            vc.myProject = curPro;
+//            analyseVC = vc;
         }
     }
     if (isNewVC) {
