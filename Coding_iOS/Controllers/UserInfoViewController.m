@@ -33,7 +33,7 @@
 #import <APParallaxHeader/UIScrollView+APParallaxHeader.h>
 
 #import "CSMyTopicVC.h"
-#import "PointRecordsViewController.h"
+
 
 @interface UserInfoViewController ()<UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UITableView *myTableView;
@@ -316,8 +316,8 @@
 //}
 
 - (void)goToPoint{
-    PointRecordsViewController *vc = [PointRecordsViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
+//    PointRecordsViewController *vc = [PointRecordsViewController new];
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark Nav

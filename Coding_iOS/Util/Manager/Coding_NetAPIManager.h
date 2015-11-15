@@ -12,8 +12,7 @@
 #import "Tweets.h"
 #import "Users.h"
 #import "PrivateMessages.h"
-#import "PointRecord.h"
-#import "PointRecords.h"
+
 
 #import "CodingTips.h"
 #import "Login.h"
@@ -66,7 +65,7 @@ typedef NS_ENUM(NSUInteger, VerifyType){
 - (void)request_UserJobArrayWithBlock:(void (^)(id data, NSError *error))block;
 - (void)request_UserTagArrayWithBlock:(void (^)(id data, NSError *error))block;
 - (void)request_UpdateUserInfo_WithObj:(User *)curUser andBlock:(void (^)(id data, NSError *error))block;
-- (void)request_PointRecords:(PointRecords *)records andBlock:(void (^)(id data, NSError *error))block;
+
 
 //Message
 - (void)request_PrivateMessages:(PrivateMessages *)priMsgs andBlock:(void (^)(id data, NSError *error))block;

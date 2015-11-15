@@ -511,19 +511,7 @@
     }];
 }
 
-- (void)request_PointRecords:(PointRecords *)records andBlock:(void (^)(id data, NSError *error))block{
-    [[CodingNetAPIClient sharedJsonClient] requestJsonDataWithPath:[records toPath] withParams:[records toParams] withMethodType:Get andBlock:^(id data, NSError *error) {
-        if (data) {
-            [MobClick event:kUmeng_Event_Request_Get label:@"码币记录"];
 
-            data = [data valueForKey:@"data"];
-            PointRecords *resultA = [NSObject objectOfClass:@"PointRecords" fromJSON:data];
-            block(resultA, nil);
-        }else{
-            block(nil, error);
-        }
-    }];
-}
 
 #pragma mark Message
 - (void)request_PrivateMessages:(PrivateMessages *)priMsgs andBlock:(void (^)(id data, NSError *error))block{

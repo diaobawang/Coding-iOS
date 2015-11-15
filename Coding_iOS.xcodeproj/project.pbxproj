@@ -29,12 +29,6 @@
 		3A3878491AE36ED70078D5DE /* TopicListButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A3878481AE36ED70078D5DE /* TopicListButton.m */; };
 		3A38784C1AE36EF00078D5DE /* TopicListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A38784B1AE36EF00078D5DE /* TopicListView.m */; };
 		3A38784F1AE557700078D5DE /* TopicPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A38784E1AE557700078D5DE /* TopicPreviewCell.m */; };
-		4E0022831B72095E005308DE /* PointRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022821B72095E005308DE /* PointRecord.m */; };
-		4E0022861B720966005308DE /* PointRecords.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022851B720966005308DE /* PointRecords.m */; };
-		4E0022891B721516005308DE /* PointRecordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022881B721516005308DE /* PointRecordsViewController.m */; };
-		4E00228C1B721955005308DE /* PointTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E00228B1B721955005308DE /* PointTopCell.m */; };
-		4E00228F1B721964005308DE /* PointShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E00228E1B721964005308DE /* PointShopCell.m */; };
-		4E0022921B721973005308DE /* PointRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022911B721973005308DE /* PointRecordCell.m */; };
 		4E0022961B73506A005308DE /* EARestrictedScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022951B73506A005308DE /* EARestrictedScrollView.m */; };
 		4E00229C1B735075005308DE /* EAIntroPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E0022991B735075005308DE /* EAIntroPage.m */; };
 		4E00229D1B735075005308DE /* EAIntroView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E00229B1B735075005308DE /* EAIntroView.m */; };
@@ -537,7 +531,6 @@
 		8E525C8D19F7E3F800496B34 /* blankpage_image_Sleep@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E525C8619F7E3F800496B34 /* blankpage_image_Sleep@2x.png */; };
 		8E59F0E21A0098BA009A905F /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E59F0DF1A0098BA009A905F /* UIScrollView+SVInfiniteScrolling.m */; };
 		8E59F0E31A0098BA009A905F /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E59F0E11A0098BA009A905F /* UIScrollView+SVPullToRefresh.m */; };
-		8E59F1001A01133C009A905F /* CodeTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E59F0FF1A01133C009A905F /* CodeTree.m */; };
 		8E61D27B19C028CC00C00414 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E61D27A19C028CC00C00414 /* AssetsLibrary.framework */; };
 		8E62ADDA19E28DA800963870 /* tipIcon_User@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E62ADD919E28DA800963870 /* tipIcon_User@2x.png */; };
 		8E64ED7B19ED0CE3006E99DA /* QBAssetsCollectionCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E64ED6719ED0CE3006E99DA /* QBAssetsCollectionCheckmarkView.m */; };
@@ -820,18 +813,6 @@
 		3A38784D1AE557700078D5DE /* TopicPreviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopicPreviewCell.h; sourceTree = "<group>"; };
 		3A38784E1AE557700078D5DE /* TopicPreviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopicPreviewCell.m; sourceTree = "<group>"; };
 		3B024F2227BD4152BC7C9A7A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E0022811B72095E005308DE /* PointRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRecord.h; sourceTree = "<group>"; };
-		4E0022821B72095E005308DE /* PointRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRecord.m; sourceTree = "<group>"; };
-		4E0022841B720966005308DE /* PointRecords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRecords.h; sourceTree = "<group>"; };
-		4E0022851B720966005308DE /* PointRecords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRecords.m; sourceTree = "<group>"; };
-		4E0022871B721516005308DE /* PointRecordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRecordsViewController.h; sourceTree = "<group>"; };
-		4E0022881B721516005308DE /* PointRecordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRecordsViewController.m; sourceTree = "<group>"; };
-		4E00228A1B721955005308DE /* PointTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointTopCell.h; sourceTree = "<group>"; };
-		4E00228B1B721955005308DE /* PointTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointTopCell.m; sourceTree = "<group>"; };
-		4E00228D1B721964005308DE /* PointShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointShopCell.h; sourceTree = "<group>"; };
-		4E00228E1B721964005308DE /* PointShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointShopCell.m; sourceTree = "<group>"; };
-		4E0022901B721973005308DE /* PointRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointRecordCell.h; sourceTree = "<group>"; };
-		4E0022911B721973005308DE /* PointRecordCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PointRecordCell.m; sourceTree = "<group>"; };
 		4E0022941B73506A005308DE /* EARestrictedScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EARestrictedScrollView.h; sourceTree = "<group>"; };
 		4E0022951B73506A005308DE /* EARestrictedScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EARestrictedScrollView.m; sourceTree = "<group>"; };
 		4E0022981B735075005308DE /* EAIntroPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EAIntroPage.h; sourceTree = "<group>"; };
@@ -1559,8 +1540,6 @@
 		8E59F0DF1A0098BA009A905F /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		8E59F0E01A0098BA009A905F /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		8E59F0E11A0098BA009A905F /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
-		8E59F0FE1A01133C009A905F /* CodeTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeTree.h; sourceTree = "<group>"; };
-		8E59F0FF1A01133C009A905F /* CodeTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeTree.m; sourceTree = "<group>"; };
 		8E61D27A19C028CC00C00414 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8E62ADD919E28DA800963870 /* tipIcon_User@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tipIcon_User@2x.png"; sourceTree = "<group>"; };
 		8E64ED6619ED0CE3006E99DA /* QBAssetsCollectionCheckmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBAssetsCollectionCheckmarkView.h; sourceTree = "<group>"; };
@@ -3397,8 +3376,6 @@
 				4E996BCC1ABA773800C704F1 /* UserInfoViewController.m */,
 				4E996BDA1ABA79AB00C704F1 /* UserInfoDetailViewController.h */,
 				4E996BDB1ABA79AB00C704F1 /* UserInfoDetailViewController.m */,
-				4E0022871B721516005308DE /* PointRecordsViewController.h */,
-				4E0022881B721516005308DE /* PointRecordsViewController.m */,
 				4E93F2431B85C4C300017916 /* FileInfoViewController.xib */,
 			);
 			path = Controllers;
@@ -3680,18 +3657,12 @@
 				8EA6CFF719E240C40076D59C /* User.m */,
 				8EA6CFF819E240C40076D59C /* Users.h */,
 				8EA6CFF919E240C40076D59C /* Users.m */,
-				8E59F0FE1A01133C009A905F /* CodeTree.h */,
-				8E59F0FF1A01133C009A905F /* CodeTree.m */,
 				0A6E6BAB1AB08540004C0107 /* TweetSendLocation.h */,
 				0A6E6BAC1AB08540004C0107 /* TweetSendLocation.m */,
 				4E095A571B690494008DC439 /* CodingBanner.h */,
 				4E095A581B690494008DC439 /* CodingBanner.m */,
 				7EB02FFA1B6E001300D2166C /* VoiceMedia.h */,
 				7EB02FFB1B6E001300D2166C /* VoiceMedia.m */,
-				4E0022811B72095E005308DE /* PointRecord.h */,
-				4E0022821B72095E005308DE /* PointRecord.m */,
-				4E0022841B720966005308DE /* PointRecords.h */,
-				4E0022851B720966005308DE /* PointRecords.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3995,12 +3966,6 @@
 				4E4D6A8A1B1C6E3000FD2E49 /* TextCheckMarkCell.m */,
 				4E94C4F21B4D007600EB668A /* Login2FATipCell.h */,
 				4E94C4F31B4D007600EB668A /* Login2FATipCell.m */,
-				4E00228A1B721955005308DE /* PointTopCell.h */,
-				4E00228B1B721955005308DE /* PointTopCell.m */,
-				4E00228D1B721964005308DE /* PointShopCell.h */,
-				4E00228E1B721964005308DE /* PointShopCell.m */,
-				4E0022901B721973005308DE /* PointRecordCell.h */,
-				4E0022911B721973005308DE /* PointRecordCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -4576,7 +4541,6 @@
 				4E8D5D6E1B45400100B70936 /* ZXScanCodeViewController.m in Sources */,
 				4ECD72EF1AAD7EC300D69AE1 /* Tweet.m in Sources */,
 				8EF643CD19FF7E2900F7EEB0 /* TweetCommentMoreCell.m in Sources */,
-				8E59F1001A01133C009A905F /* CodeTree.m in Sources */,
 				4E93F2331B84243D00017916 /* KxMenu.m in Sources */,
 				4ECE8B021A3946C10021E29C /* JobManager.m in Sources */,
 				4E0BD8561B6C7DFD0061CAA6 /* UIView+Frame.m in Sources */,
@@ -4586,7 +4550,6 @@
 				8EF643C619FF7E2900F7EEB0 /* TitleValueCell.m in Sources */,
 				4EA7F1671A6D192B00A046BD /* ODRefreshControl.m in Sources */,
 				8EA6D20C19E240C40076D59C /* RDVTabBarItem.m in Sources */,
-				4E00228F1B721964005308DE /* PointShopCell.m in Sources */,
 				8EA6D1B519E240C40076D59C /* ListGroupItem.m in Sources */,
 				8E1C3E0A19E8DFE300EF3032 /* SettingAccountViewController.m in Sources */,
 				4E8765681A22E5B40090CFB9 /* SWTableViewCell.m in Sources */,
@@ -4603,7 +4566,6 @@
 				4EABD2571AD3CAAC005E515F /* UIMessageInputView_Add.m in Sources */,
 				7EB02FCE1B6CF5D500D2166C /* UIMessageInputView_Voice.m in Sources */,
 				8E59F0E21A0098BA009A905F /* UIScrollView+SVInfiniteScrolling.m in Sources */,
-				4E0022831B72095E005308DE /* PointRecord.m in Sources */,
 				4EE5481E1AE7B7CA00A92306 /* UISearchBar+Common.m in Sources */,
 				4EA7F1621A6D192B00A046BD /* UIImage+GIF.m in Sources */,
 				8EF643BB19FF7E2900F7EEB0 /* MessageCell.m in Sources */,
@@ -4622,7 +4584,6 @@
 				8EA6D1FA19E240C40076D59C /* MJPhotoProgressView.m in Sources */,
 				8EA6D1C419E240C40076D59C /* Users.m in Sources */,
 				8EF643D219FF7E2900F7EEB0 /* UserCell.m in Sources */,
-				4E0022891B721516005308DE /* PointRecordsViewController.m in Sources */,
 				4E8D5D731B454D5000B70936 /* OTPAuthClock.m in Sources */,
 				4E8D5D621B45295D00B70936 /* TOTPGenerator.m in Sources */,
 				4E0BD86A1B6C7E3D0061CAA6 /* CSHotTopicView.m in Sources */,
@@ -4709,7 +4670,6 @@
 				8EA6D1F919E240C40076D59C /* MJPhotoLoadingView.m in Sources */,
 				4EA7F1641A6D192B00A046BD /* UIImageView+HighlightedWebCache.m in Sources */,
 				E7A046A01A47279E00528C12 /* Helper.m in Sources */,
-				4E00228C1B721955005308DE /* PointTopCell.m in Sources */,
 				8E64ED8019ED0CE3006E99DA /* QBAssetsCollectionViewController.m in Sources */,
 				4E996BD71ABA776500C704F1 /* UserInfoDetailTagCell.m in Sources */,
 				4E87656A1A22E5B40090CFB9 /* SWUtilityButtonView.m in Sources */,
@@ -4805,7 +4765,6 @@
 				8EF643CB19FF7E2900F7EEB0 /* TweetCell.m in Sources */,
 				4ECE8ADF1A3943E80021E29C /* UIBarButtonItem+Common.m in Sources */,
 				4E996BD01ABA774800C704F1 /* EaseUserHeaderView.m in Sources */,
-				4E0022921B721973005308DE /* PointRecordCell.m in Sources */,
 				4E5A66951B268D160007A0AD /* UIView+PressMenu.m in Sources */,
 				8EE72BE819E3F4A8002C11D9 /* MBProgressHUD+Add.m in Sources */,
 				4E0022961B73506A005308DE /* EARestrictedScrollView.m in Sources */,
@@ -4829,7 +4788,6 @@
 				8EA6D1AB19E240C40076D59C /* main.m in Sources */,
 				4E996BD91ABA776500C704F1 /* UserInfoTextCell.m in Sources */,
 				8E1C3E0819E8DFE300EF3032 /* AboutViewController.m in Sources */,
-				4E0022861B720966005308DE /* PointRecords.m in Sources */,
 				4E6BA2D71A1EE6AF005FD721 /* AFHTTPRequestOperation.m in Sources */,
 				8EF643A919FF7E2900F7EEB0 /* MessageMediaItemCCell.m in Sources */,
 				4ECE8AE41A3943E80021E29C /* UIImage+Common.m in Sources */,
