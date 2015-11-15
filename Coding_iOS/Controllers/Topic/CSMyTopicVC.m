@@ -102,9 +102,7 @@
     return listView;
 }
 
-- (Projects *)projectsWithIndex:(NSUInteger)index{
-    return [Projects projectsWithType:index andUser:nil];
-}
+
 
 - (void)carouselDidScroll:(iCarousel *)carousel{
     [self.view endEditing:YES];
@@ -215,9 +213,7 @@
     return listView;
 }
 
-- (Projects *)projectsWithIndex:(NSUInteger)index{
-    return [Projects projectsWithType:index andUser:nil];
-}
+
 
 - (void)carouselDidScroll:(iCarousel *)carousel{
     [self endEditing:YES];

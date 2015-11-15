@@ -75,9 +75,9 @@
 
 - (void)configAddedArrayWithMembers:(NSArray *)memberArray{
     _addedArray = [NSMutableArray array];
-    for (ProjectMember *member in memberArray) {
-        [_addedArray addObject:member.user];
-    }
+//    for (ProjectMember *member in memberArray) {
+//        [_addedArray addObject:member.user];
+//    }
 }
 - (BOOL)userIsInProject:(User *)curUser{
     for (User *item in _addedArray) {
@@ -107,25 +107,25 @@
     User *curUser = [_searchedArray objectAtIndex:indexPath.row];
     cell.curUser = curUser;
     if (self.type == AddUserTypeProject) {
-        cell.usersType = UsersTypeAddToProject;
-        cell.isInProject = [self userIsInProject:curUser];
-        cell.isQuerying = [self userIsQuering:curUser];
-        cell.leftBtnClickedBlock = ^(User *clickedUser){
-            NSLog(@"add %@ to pro:%@", clickedUser.name, weakSelf.curProject.name);
-            if (![weakSelf userIsQuering:clickedUser]) {
-                //            添加改用户到项目
-                [weakSelf.queryingArray addObject:clickedUser];
-                [weakSelf.myTableView reloadData];
-                
-                [[Coding_NetAPIManager sharedManager] request_AddUser:clickedUser ToProject:weakSelf.curProject andBlock:^(id data, NSError *error) {
-                    if (data) {
-                        [weakSelf.addedArray addObject:clickedUser];
-                    }
-                    [weakSelf.queryingArray removeObject:clickedUser];
-                    [weakSelf.myTableView reloadData];
-                }];
-            }
-        };
+//        cell.usersType = UsersTypeAddToProject;
+//        cell.isInProject = [self userIsInProject:curUser];
+//        cell.isQuerying = [self userIsQuering:curUser];
+//        cell.leftBtnClickedBlock = ^(User *clickedUser){
+//            NSLog(@"add %@ to pro:%@", clickedUser.name, weakSelf.curProject.name);
+//            if (![weakSelf userIsQuering:clickedUser]) {
+//                //            添加改用户到项目
+//                [weakSelf.queryingArray addObject:clickedUser];
+//                [weakSelf.myTableView reloadData];
+//                
+//                [[Coding_NetAPIManager sharedManager] request_AddUser:clickedUser ToProject:weakSelf.curProject andBlock:^(id data, NSError *error) {
+//                    if (data) {
+//                        [weakSelf.addedArray addObject:clickedUser];
+//                    }
+//                    [weakSelf.queryingArray removeObject:clickedUser];
+//                    [weakSelf.myTableView reloadData];
+//                }];
+//            }
+//        };
     }else{
         cell.usersType = UsersTypeAddFriend;
         cell.leftBtnClickedBlock = nil;

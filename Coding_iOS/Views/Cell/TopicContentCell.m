@@ -123,103 +123,45 @@
     return self;
 }
 
-- (void)setCurTopic:(ProjectTopic *)curTopic
-{
-    if (curTopic) {
-        _curTopic = curTopic;
-    }
 
-    CGFloat curBottomY = 0;
-    CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
-    [_titleLabel setLongString:_curTopic.title withFitWidth:curWidth];
-    
-    curBottomY += CGRectGetMaxY(_titleLabel.frame) + 15;
 
-    [_userIconView sd_setImageWithURL:[_curTopic.owner.avatar urlImageWithCodePathResizeToView:_userIconView] placeholderImage:kPlaceholderMonkeyRoundView(_userIconView)];
-    [_userIconView setY:curBottomY];
-    [_timeLabel setY:curBottomY];
-    _timeLabel.attributedText = [self getAttributedTimeText];
 
-    curBottomY += 16 + 20;
-    
-//    _tagsView.tags = _curTopic.labels;
-//    [_tagsView setY:curBottomY];
-//    
-//    //[_lineView setY:curBottomY];
-//
-//    // 讨论的内容
-//    curBottomY += CGRectGetHeight(_tagsView.frame);
-    [self.webContentView setY:curBottomY];
-    [self.activityIndicator setCenter:CGPointMake(self.webContentView.center.x, curBottomY + 10)];
-    [self.webContentView setHeight:_curTopic.contentHeight];
-    
-    if (!_webContentView.isLoading) {
-        [_activityIndicator startAnimating];
-        if (_curTopic.htmlMedia.contentOrigional) {
-            [self.webContentView loadHTMLString:[WebContentManager topicPatternedWithContent:_curTopic.htmlMedia.contentOrigional] baseURL:nil];
-        }
-    }
-    
-    curBottomY += _curTopic.contentHeight + 5;
-    [_commentCountLabel setY:curBottomY + 2];
-    _commentCountLabel.text = [NSString stringWithFormat:@"%d条评论", _curTopic.child_count.intValue];
-    [_commentBtn setY:curBottomY];
-    if ([_curTopic canEdit]) {
-        _deleteBtn.hidden = NO;
-        [_deleteBtn setY:curBottomY];
-    } else {
-        _deleteBtn.hidden = YES;
-    }
-}
 
-- (void)deleteTag:(ProjectTag *)curTag
-{
-    curTag = [ProjectTag tags:self.curTopic.mdLabels hasTag:curTag];
-    if (curTag) {
-        [_curTopic.mdLabels removeObject:curTag];
-        @weakify(self);
-        [[Coding_NetAPIManager sharedManager] request_ModifyProjectTpoicLabel:self.curTopic andBlock:^(id data, NSError *error) {
-            @strongify(self);
-            if (data) {
-                _curTopic.labels = [_curTopic.mdLabels mutableCopy];
-                [self setCurTopic:_curTopic];
-            }
-        }];
-    }
-}
+
 
 - (NSMutableAttributedString *)getAttributedTimeText{
-    NSString *nameStr = [NSString stringWithFormat:@"%@", _curTopic.owner.name];
-    NSString *timeStr = [NSString stringWithFormat:@" 发布于 %@  ", [_curTopic.created_at stringDisplay_HHmm]];
-    NSString *numStr = [NSString stringWithFormat:@"#%@", _curTopic.number.stringValue];
-    NSString *displayStr = [NSString stringWithFormat:@"%@%@%@", nameStr, timeStr, numStr];
-    
-    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayStr];
-    [attrString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:12],
-                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x222222"]}
-                        range:[displayStr rangeOfString:nameStr]];
-    [attrString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:12],
-                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x222222"]}
-                        range:[displayStr rangeOfString:numStr]];
-    
-    [attrString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],
-                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x999999"]}
-                        range:[displayStr rangeOfString:timeStr]];
-    return  attrString;
+//    NSString *nameStr = [NSString stringWithFormat:@"%@", _curTopic.owner.name];
+//    NSString *timeStr = [NSString stringWithFormat:@" 发布于 %@  ", [_curTopic.created_at stringDisplay_HHmm]];
+//    NSString *numStr = [NSString stringWithFormat:@"#%@", _curTopic.number.stringValue];
+//    NSString *displayStr = [NSString stringWithFormat:@"%@%@%@", nameStr, timeStr, numStr];
+//    
+//    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:displayStr];
+//    [attrString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:12],
+//                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x222222"]}
+//                        range:[displayStr rangeOfString:nameStr]];
+//    [attrString addAttributes:@{NSFontAttributeName : [UIFont boldSystemFontOfSize:12],
+//                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x222222"]}
+//                        range:[displayStr rangeOfString:numStr]];
+//    
+//    [attrString addAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:12],
+//                                NSForegroundColorAttributeName : [UIColor colorWithHexString:@"0x999999"]}
+//                        range:[displayStr rangeOfString:timeStr]];
+//    return  attrString;
+    return nil;
 }
 
 + (CGFloat)cellHeightWithObj:(id)obj
 {
     CGFloat cellHeight = 0;
-    if ([obj isKindOfClass:[ProjectTopic class]]) {
-        ProjectTopic *topic = (ProjectTopic *)obj;
-        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
-        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
-        
-        //cellHeight += [ProjectTagsView getHeightForTags:topic.labels];
-        cellHeight += topic.contentHeight;
-        cellHeight += 25 + 25 + 5;
-    }
+//    if ([obj isKindOfClass:[ProjectTopic class]]) {
+//        ProjectTopic *topic = (ProjectTopic *)obj;
+//        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
+//        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
+//        
+//        //cellHeight += [ProjectTagsView getHeightForTags:topic.labels];
+//        cellHeight += topic.contentHeight;
+//        cellHeight += 25 + 25 + 5;
+//    }
     return cellHeight;
 }
 
@@ -246,14 +188,14 @@
     [self refreshwebContentView];
     [_activityIndicator stopAnimating];
     CGFloat scrollHeight = MIN(webView.scrollView.contentSize.height, 10*kScreen_Height);
-    if (ABS(scrollHeight - _curTopic.contentHeight) > 5) {
-        NSLog(@"scrollHeight: %.2f, contentHeight: %.2f, (scrollHeight - contentHeight): %.2f", scrollHeight, _curTopic.contentHeight, (scrollHeight - _curTopic.contentHeight));
-        webView.scalesPageToFit = YES;
-        _curTopic.contentHeight = scrollHeight;
-        if (_cellHeightChangedBlock) {
-            _cellHeightChangedBlock();
-        }
-    }
+//    if (ABS(scrollHeight - _curTopic.contentHeight) > 5) {
+//        NSLog(@"scrollHeight: %.2f, contentHeight: %.2f, (scrollHeight - contentHeight): %.2f", scrollHeight, _curTopic.contentHeight, (scrollHeight - _curTopic.contentHeight));
+//        webView.scalesPageToFit = YES;
+//        _curTopic.contentHeight = scrollHeight;
+//        if (_cellHeightChangedBlock) {
+//            _cellHeightChangedBlock();
+//        }
+//    }
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
@@ -286,16 +228,16 @@
 #pragma mark Btn M
 - (void)commentBtnClicked:(id)sender{
     __weak typeof(self) weakSelf = self;
-    if (_commentTopicBlock) {
-        _commentTopicBlock(_curTopic, weakSelf);
-    }
+//    if (_commentTopicBlock) {
+//        _commentTopicBlock(_curTopic, weakSelf);
+//    }
 }
 
 - (void)deleteBtnClicked:(id)sender{
     __weak typeof(self) weakSelf = self;
-    if (_deleteTopicBlock) {
-        _deleteTopicBlock(weakSelf.curTopic);
-    }
+//    if (_deleteTopicBlock) {
+//        _deleteTopicBlock(weakSelf.curTopic);
+//    }
 }
 
 @end

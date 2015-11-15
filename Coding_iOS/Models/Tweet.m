@@ -149,7 +149,7 @@ static Tweet *_tweetForSend = nil;
     NSString *path;
     if (self.project_id) {
         path = [NSString stringWithFormat:@"api/project/%@/tweet/%@", self.project_id.stringValue, self.id.stringValue];
-    }else if (self.project){
+    //}else if (self.project){
         //需要先去获取project_id
     }else if (self.user_global_key) {
         path = [NSString stringWithFormat:@"api/tweet/%@/%@", self.user_global_key, self.id.stringValue];
@@ -220,12 +220,7 @@ static Tweet *_tweetForSend = nil;
     tweet.user_global_key = user_global_key;
     return tweet;
 }
-+(Tweet *)tweetInProject:(Project *)project andPPID:(NSString *)pp_id{
-    Tweet *tweet = [[Tweet alloc] init];
-    tweet.id = [NSNumber numberWithInteger:pp_id.integerValue];
-    tweet.project = project;
-    return tweet;
-}
+
 
 - (NSDictionary *)toDoTweetParams{
     NSMutableString *contentStr = [[NSMutableString alloc] initWithString:_tweetContent? _tweetContent: @""];
@@ -276,11 +271,11 @@ static Tweet *_tweetForSend = nil;
 
 - (NSString *)toShareLinkStr{
     NSString *shareLinkStr;
-    if (_project) {
-        shareLinkStr = [NSString stringWithFormat:@"%@u/%@/p/%@?pp=%@", [NSObject baseURLStr], _project.owner_user_name, _project.name, _id.stringValue];
-    }else{
+//    if (_project) {
+//        shareLinkStr = [NSString stringWithFormat:@"%@u/%@/p/%@?pp=%@", [NSObject baseURLStr], _project.owner_user_name, _project.name, _id.stringValue];
+//    }else{
         shareLinkStr = [NSString stringWithFormat:@"%@u/%@/pp/%@", kBaseUrlStr_Phone, _owner.global_key, _id];
-    }
+//    }
     return shareLinkStr;
 }
 

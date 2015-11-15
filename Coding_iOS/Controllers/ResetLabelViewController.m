@@ -10,7 +10,7 @@
 #import "ResetLabelCell.h"
 #import "TPKeyboardAvoidingTableView.h"
 #import "Coding_NetAPIManager.h"
-#import "ProjectTag.h"
+//#import "ProjectTag.h"
 
 #define kCellIdentifier_ResetLabelCell @"ResetLabelCell"
 
@@ -74,12 +74,12 @@
 {
     if (_tempStr.length > 0) {
         __weak typeof(self) weakSelf = self;
-        _ptLabel.name = _tempStr;
-        [[Coding_NetAPIManager sharedManager] request_ModifyTag:_ptLabel inProject:_curProject andBlock:^(id data, NSError *error) {
-            if (data) {
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            }
-        }];
+//        _ptLabel.name = _tempStr;
+//        [[Coding_NetAPIManager sharedManager] request_ModifyTag:_ptLabel inProject:_curProject andBlock:^(id data, NSError *error) {
+//            if (data) {
+//                [weakSelf.navigationController popViewControllerAnimated:YES];
+//            }
+//        }];
     }
 }
 
@@ -101,7 +101,7 @@
     cell.labelField.delegate = self;
     [cell.labelField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     cell.backgroundColor = kColorTableBG;
-    cell.labelField.text = _ptLabel.name;
+    //cell.labelField.text = _ptLabel.name;
     return cell;
 }
 
@@ -136,7 +136,7 @@
 {
     _tempStr = textField.text;
     if (_tempStr.length > 0) {
-        self.navigationItem.rightBarButtonItem.enabled = [_tempStr isEqualToString:_ptLabel.name] ? FALSE : TRUE;
+        //self.navigationItem.rightBarButtonItem.enabled = [_tempStr isEqualToString:_ptLabel.name] ? FALSE : TRUE;
     } else {
         self.navigationItem.rightBarButtonItem.enabled = FALSE;
     }

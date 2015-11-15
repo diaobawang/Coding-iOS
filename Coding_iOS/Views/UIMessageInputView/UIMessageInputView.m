@@ -157,7 +157,7 @@ static NSMutableDictionary *_inputStrDict, *_inputMediaDict;
         _viewHeightOld = CGRectGetHeight(frame);
         _inputState = UIMessageInputViewStateSystem;
         _isAlwaysShow = NO;
-        _curProject = nil;
+
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(didPan:)];
         [self addGestureRecognizer:panGesture];
     }
@@ -513,7 +513,7 @@ static NSMutableDictionary *_inputStrDict, *_inputMediaDict;
         [[[[NSNotificationCenter defaultCenter] rac_addObserverForName:kNotificationUploadCompled object:nil] takeUntil:self.rac_willDeallocSignal] subscribeNext:^(NSNotification *aNotification) {
             //{NSURLResponse: response, NSError: error, ProjectFile: data}
             NSDictionary* userInfo = [aNotification userInfo];
-            [self completionUploadWithResult:[userInfo objectForKey:@"data"] error:[userInfo objectForKey:@"error"]];
+            //[self completionUploadWithResult:[userInfo objectForKey:@"data"] error:[userInfo objectForKey:@"error"]];
         }];
     }
     
@@ -801,77 +801,13 @@ static NSMutableDictionary *_inputStrDict, *_inputMediaDict;
         }
     }];
     if (media && media.curAsset) {
-        [self doUploadMedia:media withIndex:index];
+        //[self doUploadMedia:media withIndex:index];
     }else{
         [self hudTipWillShow:nil];
         [[BaseViewController presentingVC] dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
-- (void)doUploadMedia:(UIMessageInputView_Media *)media withIndex:(NSInteger)index{
-    //保存到app内
-    NSString* originalFileName = [[media.curAsset defaultRepresentation] filename];
-    NSString *fileName = [NSString stringWithFormat:@"%@|||%@|||%@", self.curProject.id.stringValue, @"0", originalFileName];
-    
-    if ([Coding_FileManager writeUploadDataWithName:fileName andAsset:media.curAsset]) {
-        [self hudTipWillShow:[NSString stringWithFormat:@"正在上传第 %ld 张图片...", (long)index +1]];
-        media.state = UIMessageInputView_MediaStateUploading;
-        self.uploadingPhotoName = originalFileName;
-        Coding_UploadTask *uploadTask =[[Coding_FileManager sharedManager] addUploadTaskWithFileName:fileName projectIsPublic:_curProject.is_public.boolValue];
-        @weakify(self)
-        [RACObserve(uploadTask, progress.fractionCompleted) subscribeNext:^(NSNumber *fractionCompleted) {
-            @strongify(self);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (self.HUD) {
-                    self.HUD.progress = MAX(0, fractionCompleted.floatValue-0.05);
-                    DebugLog(@"uploadingPhotoName - %@ : %.2f", self.uploadingPhotoName, fractionCompleted.floatValue);
-                }
-            });
-        }];
-    }else{
-        media.state = UIMessageInputView_MediaStateUploadFailed;
-        [NSObject showHudTipStr:[NSString stringWithFormat:@"%@ 文件处理失败", originalFileName]];
-    }
-}
-
-- (void)completionUploadWithResult:(id)responseObject error:(NSError *)error{
-    //移除文件（共有项目不能自动移除）
-    NSString *diskFileName = [NSString stringWithFormat:@"%@|||%@|||%@", self.curProject.id.stringValue, @"0", self.uploadingPhotoName];
-    [Coding_FileManager deleteUploadDataWithName:diskFileName];
-
-    __block UIMessageInputView_Media *media = nil;
-    [_uploadMediaList enumerateObjectsUsingBlock:^(UIMessageInputView_Media *obj, NSUInteger idx, BOOL *stop) {
-        if (obj.state == UIMessageInputView_MediaStateUploading) {
-            media = obj;
-            *stop = YES;
-        }
-    }];
-    if (!media) {
-        return;
-    }else{
-        if (responseObject) {
-            NSString *fileName = nil, *fileUrlStr = @"";
-            if ([responseObject isKindOfClass:[NSString class]]) {
-                fileUrlStr = responseObject;
-            }else if ([responseObject isKindOfClass:[ProjectFile class]]){
-                ProjectFile *curFile = responseObject;
-                fileName = curFile.name;
-                fileUrlStr = curFile.owner_preview;
-            }
-            
-            if (!fileName || [fileName isEqualToString:self.uploadingPhotoName]) {
-                media.urlStr = fileUrlStr;
-                media.state = UIMessageInputView_MediaStateUploadSucess;
-                [self.mediaList addObject:media];
-                [self mediaListChenged];
-            }
-        }
-        if (media.state != UIMessageInputView_MediaStateUploadSucess) {
-            media.state = UIMessageInputView_MediaStateUploadFailed;
-        }
-        [self doUploadMediaList];
-    }
-}
 
 - (void)hudTipWillShow:(NSString *)tipStr{
     if (tipStr.length > 0) {
@@ -916,17 +852,17 @@ static NSMutableDictionary *_inputStrDict, *_inputMediaDict;
         return NO;
     }else if ([text isEqualToString:@"@"]){
         __weak typeof(self) weakSelf = self;
-        if (self.curProject) {
-            //@项目成员
-//            [ProjectMemberListViewController showATSomeoneWithBlock:^(User *curUser) {
-//                [weakSelf atSomeUser:curUser inTextView:textView andRange:range];
-//            } withProject:self.curProject];
-        }else{
+//        if (self.curProject) {
+//            //@项目成员
+////            [ProjectMemberListViewController showATSomeoneWithBlock:^(User *curUser) {
+////                [weakSelf atSomeUser:curUser inTextView:textView andRange:range];
+////            } withProject:self.curProject];
+//        }else{
             //@好友
             [UsersViewController showATSomeoneWithBlock:^(User *curUser) {
                 [weakSelf atSomeUser:curUser inTextView:textView andRange:range];
             }];
-        }
+//        }
         return NO;
     }
     return YES;

@@ -7,8 +7,8 @@
 //
 
 #import "XTSegmentControl.h"
-#import "ProjectMember.h"
-#import "Projects.h"
+//#import "ProjectMember.h"
+//#import "Projects.h"
 
 #define XTSegmentControlItemFont (15)
 
@@ -299,36 +299,8 @@ typedef NS_ENUM(NSInteger, XTSegmentControlItemType)
             [_contentView addSubview:item];
         }
 
-    } else if ([obj isKindOfClass:[ProjectMember class]] || [obj isKindOfClass:[Project class]]) {
-//        全部任务的frame
-        CGRect firstFrame = CGRectMake(5.0, 0, XTSegmentControlIconWidth, height);
-        [_itemFrames addObject:[NSValue valueWithCGRect:firstFrame]];
-
-        for (int i = 1; i < titleArray.count; i++) {
-            float x = CGRectGetMaxX([_itemFrames[i-1] CGRectValue]);
-            CGRect rect = CGRectMake(x, y, XTSegmentControlIconWidth, height);
-            [_itemFrames addObject:[NSValue valueWithCGRect:rect]];
-        }
-        
-        for (int i = 0; i < titleArray.count; i++) {
-            CGRect rect = [_itemFrames[i] CGRectValue];
-            XTSegmentControlItem *item;
-            if ([obj isKindOfClass:[ProjectMember class]]) {
-                ProjectMember *title = titleArray[i];
-                item = [[XTSegmentControlItem alloc] initWithFrame:rect title:title.user.avatar type:XTSegmentControlItemTypeIconUrl];
-            } else if ([obj isKindOfClass:[Project class]]){
-                Project *title = titleArray[i];
-                item = [[XTSegmentControlItem alloc] initWithFrame:rect title:title.icon type:XTSegmentControlItemTypeIconUrl];
-            }
-            if (item) {
-                if (i == 0) {
-                    [item setSelected:YES];
-                }
-                [_items addObject:item];
-                [_contentView addSubview:item];
-            }
-        }
     }
+   
     
     [_contentView setContentSize:CGSizeMake(CGRectGetMaxX([[_itemFrames lastObject] CGRectValue]), CGRectGetHeight(self.bounds))];
     self.currentIndex = 0;

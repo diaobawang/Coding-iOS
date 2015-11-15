@@ -95,83 +95,19 @@
     return self;
 }
 
-- (void)setCurTopic:(ProjectTopic *)curTopic
-{
-    if (curTopic) {
-        _curTopic = curTopic;
-    }
-    
-    CGFloat curBottomY = 0;
-    CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
-    [_titleLabel setLongString:_curTopic.mdTitle withFitWidth:curWidth];
-    
-    curBottomY += CGRectGetMaxY(_titleLabel.frame) + 15;
-    
-    if (!_isLabel) {
-        _userIconView.hidden = TRUE;
-        _timeLabel.hidden = TRUE;
-        //_tagsView.hidden = YES;
-        
-        // 讨论的内容
-        [self.webContentView setY:curBottomY];
-        [self.activityIndicator setCenter:CGPointMake(self.webContentView.center.x, curBottomY + 10)];
-        [self.webContentView setHeight:_curTopic.contentHeight];
-        
-        if (!_webContentView.isLoading) {
-            [_activityIndicator startAnimating];
-            @weakify(self);
-            [[Coding_NetAPIManager sharedManager] request_MDHtmlStr_WithMDStr:_curTopic.mdContent inProject:_curTopic.project andBlock:^(id data, NSError *error) {
-                @strongify(self);
-                NSString *htmlStr = data ? data : error.description;
-                //NSString *contentStr = [WebContentManager markdownPatternedWithContent:htmlStr];
-                NSString *contentStr = [WebContentManager topicPatternedWithContent:htmlStr];
-                [self.webContentView loadHTMLString:contentStr baseURL:nil];
-            }];
-        }
-        return;
-    }else{
-        [_userIconView sd_setImageWithURL:[_curTopic.owner.avatar urlImageWithCodePathResizeToView:_userIconView] placeholderImage:kPlaceholderMonkeyRoundView(_userIconView)];
-        [_userIconView setY:curBottomY];
-        [_timeLabel setY:curBottomY];
-        _timeLabel.attributedText = [self getStringWithName:_curTopic.owner.name andTime:[_curTopic.created_at stringDisplay_HHmm]];
-        curBottomY += 16 + 20;
-//        _tagsView.tags = _curTopic.mdLabels;
-//        [_tagsView setY:curBottomY];
-//
-    }
 
-    //[_lineView setY:curBottomY];
- 
-    // 讨论的内容
-//    curBottomY += CGRectGetHeight(_tagsView.frame);
-    [self.webContentView setY:curBottomY];
-    [self.activityIndicator setCenter:CGPointMake(self.webContentView.center.x, curBottomY + 10)];
-    [self.webContentView setHeight:_curTopic.contentHeight];
-    
-    if (!_webContentView.isLoading) {
-        [_activityIndicator startAnimating];
-        @weakify(self);
-        [[Coding_NetAPIManager sharedManager] request_MDHtmlStr_WithMDStr:_curTopic.mdContent inProject:_curTopic.project andBlock:^(id data, NSError *error) {
-            @strongify(self);
-            NSString *htmlStr = data ? data : error.description;
-            //NSString *contentStr = [WebContentManager markdownPatternedWithContent:htmlStr];
-            NSString *contentStr = [WebContentManager topicPatternedWithContent:htmlStr];
-            [self.webContentView loadHTMLString:contentStr baseURL:nil];
-        }];
-    }
-}
 
-- (void)deleteTag:(ProjectTag *)curTag
-{
-    curTag = [ProjectTag tags:_curTopic.mdLabels hasTag:curTag];
-    if (curTag) {
-        [_curTopic.mdLabels removeObject:curTag];
-        [self setCurTopic:_curTopic];
-        if (_delLabelBlock) {
-            _delLabelBlock();
-        }
-    }
-}
+//- (void)deleteTag:(ProjectTag *)curTag
+//{
+//    curTag = [ProjectTag tags:_curTopic.mdLabels hasTag:curTag];
+//    if (curTag) {
+//        [_curTopic.mdLabels removeObject:curTag];
+//        [self setCurTopic:_curTopic];
+//        if (_delLabelBlock) {
+//            _delLabelBlock();
+//        }
+//    }
+//}
 
 - (NSMutableAttributedString*)getStringWithName:(NSString *)nameStr andTime:(NSString *)timeStr
 {
@@ -189,26 +125,26 @@
 + (CGFloat)cellHeightWithObj:(id)obj
 {
     CGFloat cellHeight = 0;
-    if ([obj isKindOfClass:[ProjectTopic class]]) {
-        ProjectTopic *topic = (ProjectTopic *)obj;
-        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
-        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
-        cellHeight += topic.contentHeight + 5;
-    }
+//    if ([obj isKindOfClass:[ProjectTopic class]]) {
+//        ProjectTopic *topic = (ProjectTopic *)obj;
+//        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
+//        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
+//        cellHeight += topic.contentHeight + 5;
+//    }
     return cellHeight;
 }
 
 + (CGFloat)cellHeightWithObjWithLabel:(id)obj
 {
     CGFloat cellHeight = 0;
-    if ([obj isKindOfClass:[ProjectTopic class]]) {
-        ProjectTopic *topic = (ProjectTopic *)obj;
-        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
-        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
-
-//        cellHeight += [ProjectTagsView getHeightForTags:topic.mdLabels];
-        cellHeight += topic.contentHeight + 50;
-    }
+//    if ([obj isKindOfClass:[ProjectTopic class]]) {
+//        ProjectTopic *topic = (ProjectTopic *)obj;
+//        CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
+//        cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
+//
+////        cellHeight += [ProjectTagsView getHeightForTags:topic.mdLabels];
+//        cellHeight += topic.contentHeight + 50;
+//    }
     return cellHeight;
 }
 
@@ -235,13 +171,13 @@
     [self refreshwebContentView];
     [_activityIndicator stopAnimating];
     CGFloat scrollHeight = webView.scrollView.contentSize.height;
-    if (ABS(scrollHeight - _curTopic.contentHeight) > 5) {
-        webView.scalesPageToFit = YES;
-        _curTopic.contentHeight = scrollHeight;
-        if (_cellHeightChangedBlock) {
-            _cellHeightChangedBlock();
-        }
-    }
+//    if (ABS(scrollHeight - _curTopic.contentHeight) > 5) {
+//        webView.scalesPageToFit = YES;
+//        _curTopic.contentHeight = scrollHeight;
+//        if (_cellHeightChangedBlock) {
+//            _cellHeightChangedBlock();
+//        }
+//    }
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {

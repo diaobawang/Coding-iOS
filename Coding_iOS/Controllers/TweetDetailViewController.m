@@ -15,7 +15,7 @@
 #import "RegexKitLite.h"
 
 #import "MJPhotoBrowser.h"
-
+//#import "EditTaskViewController.h"
 #import "WebViewController.h"
 #import "ReportIllegalViewController.h"
 #import "TweetSendLocationDetailViewController.h"
@@ -162,25 +162,26 @@
 #pragma mark refresh
 - (void)refreshTweet{
     __weak typeof(self) weakSelf = self;
-    if (_curTweet.project && !_curTweet.project_id) {
-        [[Coding_NetAPIManager sharedManager] request_ProjectDetail_WithObj:_curTweet.project andBlock:^(id data, NSError *error) {
-            if (data) {
-                weakSelf.curTweet.project = data;
-                weakSelf.curTweet.project_id = [(Project *)data id];
-                [weakSelf refreshTweet];
-            }else{
-                [weakSelf.refreshControl endRefreshing];
-            }
-        }];
+    if (false) {
+//    if (_curTweet.project && !_curTweet.project_id) {
+//        [[Coding_NetAPIManager sharedManager] request_ProjectDetail_WithObj:_curTweet.project andBlock:^(id data, NSError *error) {
+//            if (data) {
+//                weakSelf.curTweet.project = data;
+//                weakSelf.curTweet.project_id = [(Project *)data id];
+//                [weakSelf refreshTweet];
+//            }else{
+//                [weakSelf.refreshControl endRefreshing];
+//            }
+//        }];
     }else{
         [[Coding_NetAPIManager sharedManager] request_Tweet_Detail_WithObj:_curTweet andBlock:^(id data, NSError *error) {
             if (data) {
                 if (weakSelf.curTweet.contentHeight > 1) {
                     ((Tweet *)data).contentHeight = weakSelf.curTweet.contentHeight;
                 }
-                if (weakSelf.curTweet.project) {
-                    [(Tweet *)data setProject:weakSelf.curTweet.project];
-                }
+//                if (weakSelf.curTweet.project) {
+//                    [(Tweet *)data setProject:weakSelf.curTweet.project];
+//                }
                 weakSelf.curTweet = data;
                 weakSelf.myMsgInputView.commentOfId = weakSelf.curTweet.id;
                 weakSelf.myMsgInputView.toUser = nil;

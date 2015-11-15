@@ -12,8 +12,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 #import "DirectoryWatcher.h"
-#import "ProjectFile.h"
-#import "FileVersion.h"
+
+
 
 @class Coding_DownloadTask;
 @class Coding_UploadTask;

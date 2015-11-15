@@ -140,17 +140,7 @@
 + (void)cancelCDownloadTaskForResponse:(NSURLResponse *)response{
     [self cancelCDownloadTaskForKey:[self keyStrFromResponse:response]];
 }
-- (Coding_DownloadTask *)addDownloadTaskForObj:(id)obj completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler{
-    Coding_DownloadTask *cTask = nil;
-    if ([obj isKindOfClass:[ProjectFile class]]) {
-        ProjectFile *file = (ProjectFile*)obj;
-        cTask = [self addDownloadTaskWithPath:file.downloadPath diskFileName:file.diskFileName storage_key:file.storage_key completionHandler:completionHandler];
-    }else if ([obj isKindOfClass:[FileVersion class]]){
-        FileVersion *fileVersion = (FileVersion *)obj;
-        cTask = [self addDownloadTaskWithPath:fileVersion.downloadPath diskFileName:fileVersion.diskFileName storage_key:fileVersion.storage_key completionHandler:completionHandler];
-    }
-    return cTask;
-}
+
 
 - (Coding_DownloadTask *)addDownloadTaskWithPath:(NSString *)downloadPath
                                     diskFileName:(NSString *)diskFileName
@@ -286,25 +276,6 @@
                 //处理completionHandler
                 [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUploadCompled object:manager userInfo:@{@"response" : response,
                                                                                                                                 @"data" : responseObject}];
-            }else{
-                ProjectFile *curFile = [NSObject objectOfClass:@"ProjectFile" fromJSON:responseObject];
-                NSString *block_fileName = [NSString stringWithFormat:@"%@|||%@|||%@", block_project_id, curFile.parent_id.stringValue, curFile.name];
-                NSString *block_filePath = [[[manager class] uploadPath] stringByAppendingPathComponent:block_fileName];
-                
-                //移动文件到已下载
-                NSString *diskFileName = [NSString stringWithFormat:@"%@|||%@|||%@|%@", curFile.name, block_project_id, curFile.storage_type, curFile.storage_key];
-                NSString *diskFilePath = [[[manager class] downloadPath] stringByAppendingPathComponent:diskFileName];
-                [[NSFileManager defaultManager] moveItemAtPath:block_filePath toPath:diskFilePath error:nil];
-                [manager directoryDidChange:manager.docUploadWatcher];
-                [manager directoryDidChange:manager.docDownloadWatcher];
-                DebugLog(@"upload_fileName------\n%@", block_fileName);
-                
-                //移除任务
-                [Coding_FileManager cancelCUploadTaskForFile:block_fileName hasError:(error != nil)];
-                
-                //处理completionHandler
-                [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUploadCompled object:manager userInfo:@{@"response" : response,
-                                                                                                                                @"data" : curFile}];
             }
         }
     }];

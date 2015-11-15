@@ -7,8 +7,8 @@
 //
 
 #import "BaseViewController.h"
-#import "Projects.h"
-#import "ProjectMember.h"
+
+
 
 typedef NS_ENUM(NSInteger, AddUserType) {
     AddUserTypeProject = 0,
@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, AddUserType) {
 @interface AddUserViewController : BaseViewController<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (assign, nonatomic) AddUserType type;
-@property (strong, nonatomic) Project *curProject;
+
 @property (copy, nonatomic) void(^popSelfBlock)();
 @property (strong, nonatomic) NSMutableArray *queryingArray, *addedArray, *searchedArray;
 - (void)configAddedArrayWithMembers:(NSArray *)memberArray;

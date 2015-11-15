@@ -10,10 +10,10 @@
 #define kCellIdentifier_TopicComment_Media @"TopicCommentCell_Media"
 
 #import <UIKit/UIKit.h>
-#import "ProjectTopic.h"
+//#import "ProjectTopic.h"
 
 @interface TopicCommentCell : UITableViewCell
-@property (strong, nonatomic) ProjectTopic *toComment;
+//@property (strong, nonatomic) ProjectTopic *toComment;
 @property (strong, nonatomic) UITTTAttributedLabel *contentLabel;
 
 + (CGFloat)cellHeightWithObj:(id)obj;

@@ -67,7 +67,7 @@
     }
     return self;
 }
-
+/*
 - (void)setToComment:(ProjectTopic *)toComment{
     _toComment = toComment;
     
@@ -101,15 +101,16 @@
     [_timeLabel setY:curBottomY];
     _timeLabel.text = [NSString stringWithFormat:@"%@ 发布于 %@", _toComment.owner.name, [_toComment.created_at stringDisplay_HHmm]];
 }
+*/
 
 + (CGFloat)cellHeightWithObj:(id)obj{
     CGFloat cellHeight = 0;
-    if ([obj isKindOfClass:[ProjectTopic class]]) {
-        ProjectTopic *toComment = (ProjectTopic *)obj;
-        CGFloat curWidth = kScreen_Width - 40 - 2*kPaddingLeftWidth;
-        cellHeight += 10 +[toComment.content getHeightWithFont:kTopicCommentCell_FontContent constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 5 +20 +10;
-        cellHeight += [self imageCollectionViewHeightWithCount:toComment.htmlMedia.imageItems.count];
-    }
+//    if ([obj isKindOfClass:[ProjectTopic class]]) {
+//        ProjectTopic *toComment = (ProjectTopic *)obj;
+//        CGFloat curWidth = kScreen_Width - 40 - 2*kPaddingLeftWidth;
+//        cellHeight += 10 +[toComment.content getHeightWithFont:kTopicCommentCell_FontContent constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 5 +20 +10;
+//        cellHeight += [self imageCollectionViewHeightWithCount:toComment.htmlMedia.imageItems.count];
+//    }
     return cellHeight;
 }
 
@@ -124,16 +125,16 @@
 }
 
 #pragma mark Collection M
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _toComment.htmlMedia.imageItems.count;
-}
-
-// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    TopicCommentCCell *ccell = [collectionView dequeueReusableCellWithReuseIdentifier:kCCellIdentifier_TopicCommentCCell forIndexPath:indexPath];
-    ccell.curMediaItem = [_toComment.htmlMedia.imageItems objectAtIndex:indexPath.row];
-    return ccell;
-}
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+//    return _toComment.htmlMedia.imageItems.count;
+//}
+//
+//// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    TopicCommentCCell *ccell = [collectionView dequeueReusableCellWithReuseIdentifier:kCCellIdentifier_TopicCommentCCell forIndexPath:indexPath];
+//    ccell.curMediaItem = [_toComment.htmlMedia.imageItems objectAtIndex:indexPath.row];
+//    return ccell;
+//}
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return [TopicCommentCCell ccellSize];
 }
@@ -149,19 +150,19 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //        显示大图
-    int count = (int)_toComment.htmlMedia.imageItems.count;
-    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i<count; i++) {
-        HtmlMediaItem *imageItem = [_toComment.htmlMedia.imageItems objectAtIndex:i];
-        MJPhoto *photo = [[MJPhoto alloc] init];
-        photo.url = [NSURL URLWithString:imageItem.src]; // 图片路径
-        [photos addObject:photo];
-    }
-    // 2.显示相册
-    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
-    browser.currentPhotoIndex = indexPath.row; // 弹出相册时显示的第一张图片是？
-    browser.photos = photos; // 设置所有的图片
-    [browser show];
+//    int count = (int)_toComment.htmlMedia.imageItems.count;
+//    NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
+//    for (int i = 0; i<count; i++) {
+//        HtmlMediaItem *imageItem = [_toComment.htmlMedia.imageItems objectAtIndex:i];
+//        MJPhoto *photo = [[MJPhoto alloc] init];
+//        photo.url = [NSURL URLWithString:imageItem.src]; // 图片路径
+//        [photos addObject:photo];
+//    }
+//    // 2.显示相册
+//    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc] init];
+//    browser.currentPhotoIndex = indexPath.row; // 弹出相册时显示的第一张图片是？
+//    browser.photos = photos; // 设置所有的图片
+//    [browser show];
 }
 
 @end
