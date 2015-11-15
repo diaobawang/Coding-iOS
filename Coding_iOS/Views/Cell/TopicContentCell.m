@@ -11,9 +11,9 @@
 
 #import "TopicContentCell.h"
 #import "WebContentManager.h"
-#import "ProjectTag.h"
+
 #import "Coding_NetAPIManager.h"
-#import "ProjectTagsView.h"
+
 
 @interface TopicContentCell () <UIWebViewDelegate>
 
@@ -23,7 +23,7 @@
 @property (strong, nonatomic) UIWebView *webContentView;
 @property (strong, nonatomic) UIActivityIndicatorView *activityIndicator;
 
-@property (strong, nonatomic) ProjectTagsView *tagsView;
+//@property (strong, nonatomic) ProjectTagsView *tagsView;
 //@property (strong, nonatomic) UIView *lineView;
 
 @end
@@ -55,19 +55,19 @@
             _timeLabel.font = [UIFont systemFontOfSize:12];
             [self.contentView addSubview:_timeLabel];
         }
-        if (!_tagsView) {
-            _tagsView = [ProjectTagsView viewWithTags:nil];
-            @weakify(self);
-            _tagsView.addTagBlock = ^(){
-                @strongify(self);
-                [self addtitleBtnClick];
-            };
-            _tagsView.deleteTagBlock = ^(ProjectTag *curTag){
-                @strongify(self);
-                [self deleteTag:curTag];
-            };
-            [self.contentView addSubview:_tagsView];
-        }
+//        if (!_tagsView) {
+//            _tagsView = [ProjectTagsView viewWithTags:nil];
+//            @weakify(self);
+//            _tagsView.addTagBlock = ^(){
+//                @strongify(self);
+//                [self addtitleBtnClick];
+//            };
+//            _tagsView.deleteTagBlock = ^(ProjectTag *curTag){
+//                @strongify(self);
+//                [self deleteTag:curTag];
+//            };
+//            [self.contentView addSubview:_tagsView];
+//        }
 //        if (!_lineView) {
 //            _lineView = [[UIView alloc] initWithFrame:CGRectMake(kPaddingLeftWidth, 0, curWidth, 1)];
 //            _lineView.backgroundColor = kColorTableSectionBg;
@@ -142,13 +142,13 @@
 
     curBottomY += 16 + 20;
     
-    _tagsView.tags = _curTopic.labels;
-    [_tagsView setY:curBottomY];
-    
-    //[_lineView setY:curBottomY];
-
-    // 讨论的内容
-    curBottomY += CGRectGetHeight(_tagsView.frame);
+//    _tagsView.tags = _curTopic.labels;
+//    [_tagsView setY:curBottomY];
+//    
+//    //[_lineView setY:curBottomY];
+//
+//    // 讨论的内容
+//    curBottomY += CGRectGetHeight(_tagsView.frame);
     [self.webContentView setY:curBottomY];
     [self.activityIndicator setCenter:CGPointMake(self.webContentView.center.x, curBottomY + 10)];
     [self.webContentView setHeight:_curTopic.contentHeight];
@@ -216,7 +216,7 @@
         CGFloat curWidth = kScreen_Width -2*kPaddingLeftWidth;
         cellHeight += 8 + [topic.title getHeightWithFont:kTopicContentCell_FontTitle constrainedToSize:CGSizeMake(curWidth, CGFLOAT_MAX)] + 16 + 20;
         
-        cellHeight += [ProjectTagsView getHeightForTags:topic.labels];
+        //cellHeight += [ProjectTagsView getHeightForTags:topic.labels];
         cellHeight += topic.contentHeight;
         cellHeight += 25 + 25 + 5;
     }

@@ -19,7 +19,6 @@
 #import "SettingMineInfoViewController.h"
 #import "UserInfoDetailViewController.h"
 
-#import "LocalFoldersViewController.h"
 
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
@@ -239,7 +238,8 @@
         }else if (indexPath.row == 2){
             [self goToTopic];
         }else{
-            [self goToLocalFolders];
+            //[self goToLocalFolders];
+            // do nothing
         }
     }else if (indexPath.section == 3){
         if ([[FunctionTipsManager shareManager] needToTip:kFunctionTipStr_Me_Points]) {
@@ -310,10 +310,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)goToLocalFolders{
-    LocalFoldersViewController *vc = [LocalFoldersViewController new];
-    [self.navigationController pushViewController:vc animated:YES];
-}
+//- (void)goToLocalFolders{
+//    LocalFoldersViewController *vc = [LocalFoldersViewController new];
+//    [self.navigationController pushViewController:vc animated:YES];
+//}
 
 - (void)goToPoint{
     PointRecordsViewController *vc = [PointRecordsViewController new];
