@@ -29,7 +29,7 @@
 #import <UMengSocial/UMSocialWechatHandler.h>
 #import <UMengSocial/UMSocialQQHandler.h>
 #import <evernote-cloud-sdk-ios/ENSDK/ENSDK.h>
-#import "UMSocialSinaSSOHandler.h"
+
 
 #import "Tweet.h"
 #import "sys/utsname.h"
@@ -123,7 +123,7 @@
     [UMSocialWechatHandler setWXAppId:kSocial_WX_ID appSecret:kSocial_WX_Secret url:[NSObject baseURLStr]];
     [UMSocialQQHandler setQQWithAppId:kSocial_QQ_ID appKey:kSocial_QQ_Secret url:[NSObject baseURLStr]];
     [ENSession setSharedSessionConsumerKey:kSocial_EN_Key consumerSecret:kSocial_EN_Secret optionalHost:nil];
-    [UMSocialSinaSSOHandler openNewSinaSSOWithRedirectURL:kSocial_Sina_RedirectURL];
+
 
     //    UMENG Social Config
     [UMSocialConfig setFollowWeiboUids:@{UMShareToSina : kSocial_Sina_OfficailAccount}];//设置默认关注官方账号
